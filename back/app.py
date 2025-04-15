@@ -19,13 +19,15 @@ engine = create_engine(app.config['SQLALCHEMY_DATABASE_URI'])
 # Criando a sessão global para uso no DAO
 Session = sessionmaker(bind=engine)
 
-# Remova essa importação do início
-# from api.reports import reports_bp
-
 # Registrando o blueprint dentro da função create_app
 def create_app():
     from api.reports import reports_bp  # Mova a importação para dentro da função
+    from api.orders import orders_bp  
+    from api.customers import customers_bp  
+
     app.register_blueprint(reports_bp)
+    app.register_blueprint(orders_bp )
+    app.register_blueprint(customers_bp)
     return app
 
 @app.route('/')
