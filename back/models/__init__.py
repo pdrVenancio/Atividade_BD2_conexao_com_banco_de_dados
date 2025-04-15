@@ -1,6 +1,7 @@
-# Exporta os modelos para uso externo
-from .base_model import BaseModel
-from .northwind import Order, Customer, Employee, OrderDetail  # ORM
-from .northwind_models import OrderModel, CustomerModel       # Driver puro
-
-__all__ = ['BaseModel', 'Order', 'Customer', 'Employee', 'OrderDetail', 'OrderModel', 'CustomerModel']
+# Arquivo de inicialização do pacote models
+from .base import Base
+from .customer import Customer
+from .employee import Employee
+from .order import Order
+from .order_detail import OrderDetail
+from .product import Product
