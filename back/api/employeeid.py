@@ -16,7 +16,7 @@ def get_employee():
     try:
         employee_dao = EmployeeDAO(session)
 
-        response =  employee_dao.get_all(session)
+        response =  employee_dao.get_all()
 
         employees = []
         for emp in response:

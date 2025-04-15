@@ -37,6 +37,8 @@ def create_app():
     app.register_blueprint(product_bp)
     app.register_blueprint(customers_bp)
     app.register_blueprint(employee_bp)
+    
+    return  app
 
 
 
