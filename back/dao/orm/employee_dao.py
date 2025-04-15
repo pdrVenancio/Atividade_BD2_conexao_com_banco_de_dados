@@ -1,8 +1,8 @@
 from sqlalchemy.orm import sessionmaker
 from sqlalchemy import DateTime,func
-from models.employee import EmployeeORM
-from models.order_detail import OrderDetailORM
-from models.order import OrderORM
+from models.models import Employees
+from models.models import OrderDetails
+from models.models import Orders
 
 class EmployeeDAO:
     def __init__(self, session):
@@ -10,12 +10,12 @@ class EmployeeDAO:
 
     def get_by_id(self, employeeid):
         """Busca um funcionário pelo ID."""
-        employee = self.session.query(EmployeeORM).filter(EmployeeORM.employeeid == employeeid).first()
+        employee = self.session.query(Employees).filter(Employees.employeeid == employeeid).first()
         return employee
 
     def get_all(self):
         """Retorna todos os funcionários."""
-        employees = self.session.query(EmployeeORM).all()
+        employees = self.session.query(Employees).all()
         return employees
     
     def get_employee_ranking(self, start_date, end_date):
@@ -24,18 +24,18 @@ class EmployeeDAO:
         """
         rankings = self.session.query(
 
-            EmployeeORM.firstname,
-            EmployeeORM.lastname,
-            func.sum(OrderDetailORM.quantity).label('soma_qtd'),
-            func.sum(OrderDetailORM.unitprice * OrderDetailORM.quantity).label('valor_total')
+            Employees.firstname,
+            Employees.lastname,
+            func.sum(OrderDetails.quantity).label('soma_qtd'),
+            func.sum(OrderDetails.unitprice * OrderDetails.quantity).label('valor_total')
         )\
-        .select_from(OrderORM)\
-        .outerjoin(OrderDetailORM, OrderORM.orderid == OrderDetailORM.orderid)\
-        .outerjoin(EmployeeORM, OrderORM.employeeid == EmployeeORM.employeeid)\
-        .filter(func.cast(OrderORM.orderdate, DateTime) >= func.cast(start_date, DateTime), 
-                func.cast(OrderORM.orderdate, DateTime) <= func.cast(end_date, DateTime))\
-        .group_by(EmployeeORM.firstname, EmployeeORM.lastname)\
-        .order_by(func.sum(OrderDetailORM.unitprice * OrderDetailORM.quantity).desc())\
+        .select_from(Orders)\
+        .outerjoin(OrderDetails, Orders.orderid == OrderDetails.orderid)\
+        .outerjoin(Employees, Orders.employeeid == Employees.employeeid)\
+        .filter(func.cast(Orders.orderdate, DateTime) >= func.cast(start_date, DateTime), 
+                func.cast(Orders.orderdate, DateTime) <= func.cast(end_date, DateTime))\
+        .group_by(Employees.firstname, Employees.lastname)\
+        .order_by(func.sum(OrderDetails.unitprice * OrderDetails.quantity).desc())\
         .all()
 
         return rankings

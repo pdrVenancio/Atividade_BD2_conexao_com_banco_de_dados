@@ -1,22 +1,22 @@
-from models.order import Order
-from models.order_detail import OrderDetail
+from models.models import Orders
+from models.models import OrderDetails
 
 class OrderDAO:
     def __init__(self, conn):
         self.conn = conn
 
-    def insert(self, order: Order):
+    def insert(self, order: Orders):
         with self.conn.cursor() as cur:
             cur.execute("""
                 INSERT INTO orders (
                     customerid, employeeid, orderdate, requireddate, shippeddate,
-                    shipvia, freight, shipname, shipaddress, shipcity, shipregion,
+                    freight, shipname, shipaddress, shipcity, shipregion,
                     shippostalcode, shipcountry
                 ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)
                 RETURNING orderid
             """, (
                 order.customerid, order.employeeid, order.orderdate, order.requireddate,
-                order.shippeddate, order.shipvia, order.freight, order.shipname,
+                order.shippeddate, order.freight, order.shipname,
                 order.shipaddress, order.shipcity, order.shipregion,
                 order.shippostalcode, order.shipcountry
             ))
@@ -60,7 +60,7 @@ class OrderDAO:
             """, (orderid,))
             details = cur.fetchall()
             for d in details:
-                detail = OrderDetail(orderid=orderid, *d)
+                detail = OrderDetails(orderid=orderid, *d)
                 order.add_order_detail(detail)
 
             return order

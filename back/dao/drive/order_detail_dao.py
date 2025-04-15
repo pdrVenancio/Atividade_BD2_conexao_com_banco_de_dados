@@ -1,10 +1,10 @@
-from models.order_detail import OrderDetail
+from models.models import OrderDetails
 
 class OrderDetailDAO:
     def __init__(self, conn):
         self.conn = conn
 
-    def insert(self, detail: OrderDetail):
+    def insert(self, detail: OrderDetails):
         with self.conn.cursor() as cur:
             cur.execute("""
                 INSERT INTO northwind.order_details (
@@ -26,7 +26,7 @@ class OrderDetailDAO:
             """, (orderid,))
             rows = cur.fetchall()
             for row in rows:
-                details.append(OrderDetail(*row))
+                details.append(OrderDetails(*row))
         return details
 
     def delete_by_order_id(self, orderid):

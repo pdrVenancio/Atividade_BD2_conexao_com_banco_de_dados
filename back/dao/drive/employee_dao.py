@@ -1,4 +1,4 @@
-from models.employee import Employee
+from models.models import Employees
 
 class EmployeeDAO:
     def __init__(self, conn):
@@ -15,7 +15,7 @@ class EmployeeDAO:
             """, (employeeid,))
             row = cur.fetchone()
             if row:
-                return Employee(*row)
+                return Employees(*row)
         return None
 
     def get_all(self):
@@ -24,7 +24,7 @@ class EmployeeDAO:
             cur.execute("SELECT * FROM northwind.employees")
             rows = cur.fetchall()
             for row in rows:
-                employees.append(Employee(*row))
+                employees.append(Employees(*row))
         return employees
     
     

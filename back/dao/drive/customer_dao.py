@@ -1,4 +1,4 @@
-from models.customer import Customer
+from models.models import Customers
 
 class CustomerDAO:
     def __init__(self, conn):
@@ -14,7 +14,7 @@ class CustomerDAO:
             """, (customerid,))
             row = cur.fetchone()
             if row:
-                return Customer(*row)
+                return Customers(*row)
         return None
 
     def get_all(self):
@@ -23,10 +23,10 @@ class CustomerDAO:
             cur.execute("SELECT * FROM customers")
             rows = cur.fetchall()
             for row in rows:
-                customers.append(Customer(*row))
+                customers.append(Customers(*row))
         return customers
 
-    def insert(self, customer: Customer):
+    def insert(self, customer: Customers):
         with self.conn.cursor() as cur:
             cur.execute("""
                 INSERT INTO northwind.customers (

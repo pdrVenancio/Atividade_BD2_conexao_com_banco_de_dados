@@ -1,5 +1,5 @@
 import psycopg2
-from models.product import Product
+from models.models import Products
 
 class ProductDAO:
     def __init__(self, conn):
@@ -10,5 +10,5 @@ class ProductDAO:
             cur.execute("SELECT * FROM northwind.products WHERE productid = %s", (product_id,))
             row = cur.fetchone()
             if row:
-                return Product(*row)
+                return Products(*row)
         return None

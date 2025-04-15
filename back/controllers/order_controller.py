@@ -2,8 +2,8 @@ from dao.drive.customer_dao import CustomerDAO
 from dao.drive.employee_dao import EmployeeDAO
 from dao.drive.order_dao import OrderDAO
 from dao.drive.order_detail_dao import OrderDetailDAO
-from models.order import Order
-from models.order_detail import OrderDetail
+from models.models import Orders
+from models.models import OrderDetails
 
 def create_order_driver(data, conn):
     """
@@ -27,7 +27,7 @@ def create_order_driver(data, conn):
             return {"error": "Funcionário não encontrado"}, 404
 
         # 3. Criar pedido
-        order = Order(
+        order = Orders(
             customerid=data["customerid"],
             employeeid=data["employeeid"],
             orderdate=data.get("orderdate"),
@@ -45,7 +45,7 @@ def create_order_driver(data, conn):
 
         # 4. Adicionar itens
         for item in data["items"]:
-            detail = OrderDetail(
+            detail = OrderDetails(
                 productid=item["productid"],
                 unitprice=item["unitprice"],
                 quantity=item["quantity"],
