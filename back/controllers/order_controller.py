@@ -1,7 +1,7 @@
-from dao.driver.customer_dao import CustomerDAO
-from dao.driver.employee_dao import EmployeeDAO
-from dao.driver.order_dao import OrderDAO
-from dao.driver.order_detail_dao import OrderDetailDAO
+from dao.drive.customer_dao import CustomerDAO
+from dao.drive.employee_dao import EmployeeDAO
+from dao.drive.order_dao import OrderDAO
+from dao.drive.order_detail_dao import OrderDetailDAO
 from models.order import Order
 from models.order_detail import OrderDetail
 
