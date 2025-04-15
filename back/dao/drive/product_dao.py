@@ -7,7 +7,7 @@ class ProductDAO:
 
     def get_by_id(self, product_id):
         with self.conn.cursor() as cur:
-            cur.execute("SELECT * FROM products WHERE productid = %s", (product_id,))
+            cur.execute("SELECT * FROM northwind.products WHERE productid = %s", (product_id,))
             row = cur.fetchone()
             if row:
                 return Product(*row)

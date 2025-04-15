@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Integer, Float, ForeignKey
 from sqlalchemy.orm import relationship
 from .base import Base
+from models import *
 
 class OrderDetail:
     """
@@ -30,9 +31,10 @@ class OrderDetailORM(Base):
     Modelo OrderDetail - versão para uso com SQLAlchemy ORM
     """
     __tablename__ = 'order_details'
+    __table_args__ = {'schema': 'northwind'}
 
-    orderid = Column(Integer, ForeignKey('orders.orderid'), primary_key=True)
-    productid = Column(Integer, ForeignKey('products.productid'), primary_key=True)
+    orderid = Column(Integer, ForeignKey('northwind.orders.orderid'), primary_key=True)
+    productid = Column(Integer, ForeignKey('northwind.products.productid'), primary_key=True)
     unitprice = Column(Float, nullable=False)
     quantity = Column(Integer, nullable=False)
     discount = Column(Float, nullable=False)

@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Integer, String, Date, Text, ForeignKey
 from sqlalchemy.orm import relationship
 from .base import Base
+from models import *
 
 class Employee:
     """
@@ -43,6 +44,7 @@ class EmployeeORM(Base):
     Modelo Employee - versão para uso com SQLAlchemy ORM
     """
     __tablename__ = 'employees'
+    __table_args__ = {'schema': 'northwind'}
 
     employeeid = Column(Integer, primary_key=True)
     lastname = Column(String(20), nullable=False)
@@ -60,7 +62,7 @@ class EmployeeORM(Base):
     extension = Column(String(4))
     photo = Column(Text)
     notes = Column(Text)
-    reportsto = Column(Integer, ForeignKey('employees.employeeid'))
+    reportsto = Column(Integer, ForeignKey('northwind.employees.employeeid'))
 
     # Relacionamentos
     orders = relationship("OrderORM", back_populates="employee")

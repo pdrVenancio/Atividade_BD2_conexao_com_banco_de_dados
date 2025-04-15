@@ -1,6 +1,7 @@
 from sqlalchemy import Column, Integer, String, Float, ForeignKey, Boolean
 from sqlalchemy.orm import relationship
 from .base import Base
+from models import *
 
 class Product:
     """
@@ -32,11 +33,14 @@ class ProductORM(Base):
     Modelo Product - versão para uso com SQLAlchemy ORM
     """
     __tablename__ = 'products'
+    __table_args__ = {'schema': 'northwind'}
 
     productid = Column(Integer, primary_key=True)
     productname = Column(String(40), nullable=False)
-    supplierid = Column(Integer, ForeignKey('suppliers.supplierid'))
-    categoryid = Column(Integer, ForeignKey('categories.categoryid'))
+    # supplierid = Column(Integer, ForeignKey('suppliers.supplierid'))
+    # categoryid = Column(Integer, ForeignKey('categories.categoryid'))
+    supplierid = Column(Integer)
+    categoryid = Column(Integer)
     quantityperunit = Column(String(20))
     unitprice = Column(Float)
     unitsinstock = Column(Integer)
@@ -45,8 +49,8 @@ class ProductORM(Base):
     discontinued = Column(Boolean, nullable=False)
 
     # Relacionamentos (opcional, dependendo da necessidade)
-    supplier = relationship("SupplierORM")
-    category = relationship("CategoryORM")
+    # supplier = relationship("SupplierORM")
+    # category = relationship("CategoryORM")
 
     def __repr__(self):
         return f"<Product(productid={self.productid}, name='{self.productname}', price=${self.unitprice})>"

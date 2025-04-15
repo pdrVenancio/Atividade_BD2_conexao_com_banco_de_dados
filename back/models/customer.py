@@ -1,5 +1,6 @@
 from sqlalchemy import Column, String
 from .base import Base
+from models import *
 
 class Customer:
     """
@@ -32,6 +33,7 @@ class CustomerORM(Base):
     Modelo Customer - versão para uso com SQLAlchemy ORM
     """
     __tablename__ = 'customers'
+    __table_args__ = {'schema': 'northwind'}
 
     customerid = Column(String(5), primary_key=True)
     companyname = Column(String(40), nullable=False)

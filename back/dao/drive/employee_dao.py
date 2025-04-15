@@ -10,7 +10,7 @@ class EmployeeDAO:
                 SELECT employeeid, lastname, firstname, title, titleofcourtesy,
                        birthdate, hiredate, address, city, region, postalcode,
                        country, homephone, extension, photo, notes, reportsto
-                FROM employees
+                FROM northwind.employees
                 WHERE employeeid = %s
             """, (employeeid,))
             row = cur.fetchone()
@@ -21,7 +21,7 @@ class EmployeeDAO:
     def get_all(self):
         employees = []
         with self.conn.cursor() as cur:
-            cur.execute("SELECT * FROM employees")
+            cur.execute("SELECT * FROM northwind.employees")
             rows = cur.fetchall()
             for row in rows:
                 employees.append(Employee(*row))

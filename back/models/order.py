@@ -2,6 +2,7 @@ from datetime import datetime
 from sqlalchemy import Column, Integer, String, DateTime, ForeignKey, Float
 from sqlalchemy.orm import relationship
 from .base import Base
+from models import *
 
 class Order:
     """
@@ -48,10 +49,11 @@ class OrderORM(Base):
     Modelo Order - versão para uso com SQLAlchemy ORM
     """
     __tablename__ = 'orders'
+    __table_args__ = {'schema': 'northwind'}
 
     orderid = Column(Integer, primary_key=True)
-    customerid = Column(String(5), ForeignKey('customers.customerid'))
-    employeeid = Column(Integer, ForeignKey('employees.employeeid'))
+    customerid = Column(String(5), ForeignKey('northwind.customers.customerid'))
+    employeeid = Column(Integer, ForeignKey('northwind.employees.employeeid'))
     orderdate = Column(DateTime)
     requireddate = Column(DateTime)
     shippeddate = Column(DateTime)

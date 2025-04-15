@@ -48,7 +48,19 @@ def get_employee_ranking():
 
         # Utilizando o DAO com SQLAlchemy
         employee_dao = EmployeeDAO(session)
-        rankings = employee_dao.get_employee_ranking(start_date, end_date)
+        response = employee_dao.get_employee_ranking(start_date, end_date)
+
+        rankings = [
+            {
+                "position": i + 1,
+                "firstname": row.firstname,
+                "lastname": row.lastname,
+                "soma_qtd": row.soma_qtd,
+                "valor_total": float(row.valor_total)  # Garantir que é serializável
+            }
+            for i, row in enumerate(response)
+        ]
+        
         
         if not rankings:
             return jsonify({"message": "Nenhum funcionário encontrado para o intervalo de tempo fornecido."}), 404

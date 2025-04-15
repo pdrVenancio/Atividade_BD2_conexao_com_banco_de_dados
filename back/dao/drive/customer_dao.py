@@ -9,7 +9,7 @@ class CustomerDAO:
             cur.execute("""
                 SELECT customerid, companyname, contactname, contacttitle,
                        address, city, region, postalcode, country, phone, fax
-                FROM customers
+                FROM northwind.customers
                 WHERE customerid = %s
             """, (customerid,))
             row = cur.fetchone()
@@ -29,7 +29,7 @@ class CustomerDAO:
     def insert(self, customer: Customer):
         with self.conn.cursor() as cur:
             cur.execute("""
-                INSERT INTO customers (
+                INSERT INTO northwind.customers (
                     customerid, companyname, contactname, contacttitle,
                     address, city, region, postalcode, country, phone, fax
                 ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s)

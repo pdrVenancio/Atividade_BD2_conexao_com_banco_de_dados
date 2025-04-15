@@ -43,7 +43,7 @@ class OrderDAO:
                 SELECT orderid, customerid, employeeid, orderdate, requireddate,
                        shippeddate, shipvia, freight, shipname, shipaddress, 
                        shipcity, shipregion, shippostalcode, shipcountry
-                FROM orders
+                FROM northwind.orders
                 WHERE orderid = %s
             """, (orderid,))
             row = cur.fetchone()
@@ -55,7 +55,7 @@ class OrderDAO:
             # Carregar detalhes do pedido
             cur.execute("""
                 SELECT productid, unitprice, quantity, discount
-                FROM order_details
+                FROM northwind.order_details
                 WHERE orderid = %s
             """, (orderid,))
             details = cur.fetchall()
