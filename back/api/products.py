@@ -33,6 +33,7 @@ def get_all_product():
             product_dict = {
                 "productid": product.productid,
                 "productname": product.productname,
+                "unitprice" : product.unitprice
             }
             produtos.append(product_dict)
 

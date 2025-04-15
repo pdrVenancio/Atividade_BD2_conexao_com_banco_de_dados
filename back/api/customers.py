@@ -27,13 +27,13 @@ def list_customers():
     except Exception as e:
         return jsonify({"error": str(e)}), 500
 
-@customers_bp.route('/customers/<int:customer_id>', methods=['GET'])
-def get_customer(customer_id):
-    try:
-        customer_dao = CustomerDAO(session)
-        customer = customer_dao.get_by_id(customer_id)
-        if not customer:
-            return jsonify({"error": "Cliente não encontrado"}), 404
-        return jsonify(customer.to_dict()), 200
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
+# @customers_bp.route('/customers/<int:customer_id>', methods=['GET'])
+# def get_customer(customer_id):
+#     try:
+#         customer_dao = CustomerDAO(session)
+#         customer = customer_dao.get_by_id(customer_id)
+#         if not customer:
+#             return jsonify({"error": "Cliente não encontrado"}), 404
+#         return jsonify(customer.to_dict()), 200
+#     except Exception as e:
+#         return jsonify({"error": str(e)}), 500
