@@ -13,3 +13,5 @@ class CustomerDAO:
     def insert(self, customer: CustomerORM):
         self.session.add(customer)
         self.session.commit()
+    
+    

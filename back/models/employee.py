@@ -60,7 +60,6 @@ class EmployeeORM(Base):
     country = Column(String(15))
     homephone = Column(String(24))
     extension = Column(String(4))
-    photo = Column(Text)
     notes = Column(Text)
     reportsto = Column(Integer, ForeignKey('northwind.employees.employeeid'))
 

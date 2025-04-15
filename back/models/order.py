@@ -57,7 +57,6 @@ class OrderORM(Base):
     orderdate = Column(DateTime)
     requireddate = Column(DateTime)
     shippeddate = Column(DateTime)
-    shipvia = Column(Integer)
     freight = Column(Float)
     shipname = Column(String(40))
     shipaddress = Column(String(60))
@@ -79,3 +78,4 @@ class OrderORM(Base):
 
     def __repr__(self):
         return f"<Order(orderid={self.orderid}, customerid='{self.customerid}', date='{self.orderdate}')>"
+    
