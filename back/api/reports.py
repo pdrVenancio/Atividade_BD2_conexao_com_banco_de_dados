@@ -3,9 +3,6 @@ from sqlalchemy.orm import sessionmaker
 from app import engine
 from dao.orm.employee_dao import EmployeeDAO
 from dao.orm.order_dao import OrderDAO
-from models.employee import EmployeeORM
-from models.order import OrderORM
-from models.order_detail import OrderDetailORM
 from datetime import datetime
 
 # Criando a sessão do SQLAlchemy

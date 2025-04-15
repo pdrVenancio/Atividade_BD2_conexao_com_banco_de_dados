@@ -1,5 +1,5 @@
 from flask import Blueprint, request, jsonify
-from controllers.order_controller import create_order_driver
+# from controllers.order_controller import create_order_driver
 from config.db_config import get_db_connection    # Conexão com o banco de dados sem orm
 from dao.orm.order_dao import OrderDAO
 from app import engine
@@ -14,7 +14,12 @@ orders_bp = Blueprint('orders', __name__, url_prefix='/api')
 @orders_bp.route('/orders', methods=['POST'])
 def create_order():
     data = request.get_json()  # Recebe os dados em formato JSON
-    return create_order_driver(data, session)
+    order_dao = OrderDAO(session)
+
+    response =  order_dao.insert(data,session)
+    return
+
+    # return create_order_driver(data, session)
 
 @orders_bp.route('/orders/<int:order_id>', methods=['GET'])
 def get_order(order_id): 

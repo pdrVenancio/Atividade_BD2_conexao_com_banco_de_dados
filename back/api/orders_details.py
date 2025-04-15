@@ -11,6 +11,7 @@ session = Session()
 
 orders_details_bp = Blueprint('orders_details', __name__, url_prefix='/api')
 
+
 @orders_details_bp.route('/orders_details/<int:order_id>', methods=['GET'])
 def get_order(order_id): 
     try:
@@ -28,6 +29,7 @@ def get_order(order_id):
                 "product_price": product.unitprice
             }
             produtos.append(order_detail_dict)
+        
 
         if not produtos:
             return jsonify({"error": "Pedido não encontrado"}), 404

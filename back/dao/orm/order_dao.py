@@ -1,8 +1,9 @@
-from models.order import OrderORM
-
 from models.employee import EmployeeORM
 from models.customer import CustomerORM
 from models.order import OrderORM
+from models.order_detail import OrderDetailORM
+from models.product import ProductORM
+
 
 class OrderDAO:
     def __init__(self, session):
@@ -14,7 +15,6 @@ class OrderDAO:
         return order.orderid
 
     def get_by_id(self, orderid):
-        # response =self.session.query(OrderORM).filter_by(orderid=orderid).first()
         response  = self.session.query(OrderORM, CustomerORM, EmployeeORM)\
         .join(CustomerORM, OrderORM.customerid == CustomerORM.customerid, isouter=True)\
         .join(EmployeeORM, OrderORM.employeeid == EmployeeORM.employeeid, isouter=True)\

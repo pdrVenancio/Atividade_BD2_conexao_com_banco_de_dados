@@ -24,10 +24,16 @@ def create_app():
     from api.reports import reports_bp  # Mova a importação para dentro da função
     from api.orders import orders_bp  
     from api.orders_details import orders_details_bp  
+    from api.products import product_bp  
+    from api.customers import customers_bp  
+    from api.employeeid import employee_bp  
 
     app.register_blueprint(reports_bp)
     app.register_blueprint(orders_bp )
     app.register_blueprint(orders_details_bp)
+    app.register_blueprint(product_bp)
+    app.register_blueprint(customers_bp)
+    app.register_blueprint(employee_bp)
     return app
 
 @app.route('/')
