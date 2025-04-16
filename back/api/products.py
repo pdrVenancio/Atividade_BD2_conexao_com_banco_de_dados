@@ -11,16 +11,16 @@ session = Session()
 
 product_bp = Blueprint('product', __name__, url_prefix='/api')
 
-@product_bp.route('/product-insert', methods=['POST'])
-def create_order():
-    try:
-        data = request.get_json()  # Recebe os dados em formato JSON
-        order_dao = ProductDAO(session)
+# @product_bp.route('/product-insert', methods=['POST'])
+# def create_order():
+#     try:
+#         data = request.get_json()
+#         order_dao = ProductDAO(session)
 
-        response =  order_dao.insert(data,session)
-        return
-    except Exception as e:
-        return jsonify({"error": str(e)}), 500
+#         response =  order_dao.insert(data,session)
+#         return jsonify({"product": response}), 200
+#     except Exception as e:
+#         return jsonify({"error": str(e)}), 500
 
 @product_bp.route('/product-get-all', methods=['GET'])
 def get_all_product():

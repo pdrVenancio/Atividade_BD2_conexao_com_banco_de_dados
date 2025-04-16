@@ -10,6 +10,11 @@ class OrderDAO:
         self.session = session
 
     def insert(self, order: Orders):
+        # pedgo o ultimo id criado
+        last_order = self.session.query(Orders).order_by(Orders.orderid.desc()).first()
+        next_id = last_order.orderid + 1 
+
+        order.orderid = next_id  
         self.session.add(order)
         self.session.commit()
         return order.orderid
