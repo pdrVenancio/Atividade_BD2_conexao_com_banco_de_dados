@@ -37,7 +37,6 @@ def list_customers_drive():
     try:
         customer_dao = CustomerDAO_DRIVE(session_DRIVE)
         response = customer_dao.get_all()
-        print(response)
        
         if not response:
             return jsonify({"error": "Cliente não encontrado"}), 404
