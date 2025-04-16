@@ -1,4 +1,3 @@
-from sqlalchemy.orm import sessionmaker
 from sqlalchemy import DateTime,func
 from models.models import Employees
 from models.models import OrderDetails
@@ -7,11 +6,6 @@ from models.models import Orders
 class EmployeeDAO:
     def __init__(self, session):
         self.session = session
-
-    def get_by_id(self, employeeid):
-        """Busca um funcionário pelo ID."""
-        employee = self.session.query(Employees).filter(Employees.employeeid == employeeid).first()
-        return employee
 
     def get_all(self):
         """Retorna todos os funcionários."""

@@ -9,8 +9,3 @@ class ProductDAO:
     
     def get_all(self):
         return self.session.query(Products).all()
-
-    # def insert(self, prod : Products):
-    #     self.session.add(prod)
-    #     self.session.commit()
-    #     return prod.productid

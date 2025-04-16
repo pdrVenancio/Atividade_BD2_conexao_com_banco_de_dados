@@ -23,7 +23,7 @@ Session = sessionmaker(bind=engine)
 
 # Função que registra blueprints
 def create_app():
-    from api.reports import reports_bp  # Mova a importação para dentro da função
+    from api.reports import reports_bp 
     from api.orders import orders_bp  
     from api.orders_details import orders_details_bp  
     from api.products import product_bp  

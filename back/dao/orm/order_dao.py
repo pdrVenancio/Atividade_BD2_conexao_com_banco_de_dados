@@ -21,11 +21,8 @@ class OrderDAO:
 
     def get_by_id(self, orderid):
         response  = self.session.query(Orders, Customers, Employees)\
-        .join(Customers, Orders.customerid == Customers.customerid, isouter=True)\
-        .join(Employees, Orders.employeeid == Employees.employeeid, isouter=True)\
-        .filter(Orders.orderid == orderid)\
-        .first()
-        return response    
-
-    def get_all(self):
-        return self.session.query(Orders).all()
+                        .join(Customers, Orders.customerid == Customers.customerid, isouter=True)\
+                        .join(Employees, Orders.employeeid == Employees.employeeid, isouter=True)\
+                        .filter(Orders.orderid == orderid)\
+                        .first()
+        return response 

@@ -10,19 +10,18 @@ class OrderDetailDAO:
         try:
             last_order = self.session.query(Orders).order_by(Orders.orderid.desc()).first()
             detail.orderid = last_order.orderid
-            print(detail)
             self.session.add(detail)
             self.session.commit()
             return detail.orderid
         except Exception as e:
             self.session.rollback()
-            return 'Erro ap inserir'
+            return 'Erro ao inserir'
 
     def get_by_order_id(self, orderid):
         response = self.session.query(OrderDetails, Products)\
-            .join(Products, Products.productid == OrderDetails.productid)\
-            .filter(OrderDetails.orderid == orderid)\
-            .all()
+                        .join(Products, Products.productid == OrderDetails.productid)\
+                        .filter(OrderDetails.orderid == orderid)\
+                        .all()
         print(response)
         return response 
     
