@@ -52,8 +52,9 @@ def get_employee_ranking():
                 "position": i + 1,
                 "firstname": row.firstname,
                 "lastname": row.lastname,
-                "soma_qtd": row.soma_qtd,
-                "valor_total": float(row.valor_total)  # Garantir que é serializável
+                "soma_qtd_produtos": row.soma_qtd_produtos,
+                "pedidos_qtd": row.pedidos_qtd,
+                "valor_total": float(row.valor_total) 
             }
             for i, row in enumerate(response)
         ]

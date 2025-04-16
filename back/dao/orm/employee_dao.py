@@ -26,7 +26,8 @@ class EmployeeDAO:
 
             Employees.firstname,
             Employees.lastname,
-            func.sum(OrderDetails.quantity).label('soma_qtd'),
+            func.count(Orders.orderid).label('pedidos_qtd'),
+            func.sum(OrderDetails.quantity).label('soma_qtd_produtos'),
             func.sum(OrderDetails.unitprice * OrderDetails.quantity).label('valor_total')
         )\
         .select_from(Orders)\
