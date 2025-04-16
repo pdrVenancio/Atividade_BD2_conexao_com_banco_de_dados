@@ -1,5 +1,4 @@
 from flask import Blueprint, request, jsonify
-from controllers.order_controller import create_order_driver
 from config.db_config import get_db_connection    # Conexão com o banco de dados sem orm
 from dao.orm.order_detail import OrderDetailDAO as OrderDetailDAO_ORM
 from dao.drive.order_detail_dao import OrderDetailDAO as OrderDetailDAO_DRIVE

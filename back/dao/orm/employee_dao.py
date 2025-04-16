@@ -8,14 +8,10 @@ class EmployeeDAO:
         self.session = session
 
     def get_all(self):
-        """Retorna todos os funcionários."""
         employees = self.session.query(Employees).all()
         return employees
     
     def get_employee_ranking(self, start_date, end_date):
-        """
-        Retorna o ranking dos funcionários com base no intervalo de tempo fornecido.
-        """
         rankings = self.session.query(
 
             Employees.firstname,

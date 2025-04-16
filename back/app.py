@@ -7,7 +7,7 @@ from sqlalchemy.orm import sessionmaker
 import os
 
 app = Flask(__name__, static_folder='../front', static_url_path='')
-CORS(app)  # Adicionar esta linha
+CORS(app)
 
 # URI de conexão com o banco
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg://postgres:root@localhost/postgres'
@@ -56,7 +56,7 @@ def serve_static_files(path):
 # Inicializando a aplicação
 if __name__ == '__main__':
     with app.app_context():
-        db.create_all()  # Cria as tabelas, se necessário
-
+        db.create_all() 
+        
     app = create_app()
     app.run(debug=True)
