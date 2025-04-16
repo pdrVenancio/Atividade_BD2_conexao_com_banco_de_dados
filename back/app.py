@@ -7,10 +7,10 @@ from sqlalchemy.orm import sessionmaker
 import os
 
 app = Flask(__name__, static_folder='../front', static_url_path='')
-CORS(app)  # Adicionar esta linha
+CORS(app)
 
 # URI de conexão com o banco
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg://postgres:3081@localhost/northwind'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg://postgres:root@localhost/northwind'
 
 # Inicializando o SQLAlchemy
 db = SQLAlchemy(app)
@@ -23,9 +23,25 @@ Session = sessionmaker(bind=engine)
 
 # Função que registra blueprints
 def create_app():
-    from api.reports import reports_bp  # Importação movida para dentro da função
+    from api.reports import reports_bp 
+    from api.orders import orders_bp  
+    from api.orders_details import orders_details_bp  
+    from api.products import product_bp  
+    from api.customers import customers_bp  
+    from api.employeeid import employee_bp  
+    from api.shippers import shipp_bp  
+
     app.register_blueprint(reports_bp)
-    return app
+    app.register_blueprint(orders_bp )
+    app.register_blueprint(orders_details_bp)
+    app.register_blueprint(product_bp)
+    app.register_blueprint(customers_bp)
+    app.register_blueprint(employee_bp)
+    app.register_blueprint(shipp_bp)
+    
+    return  app
+
+
 
 # Rota principal: carrega o index.html da pasta do front
 @app.route('/')
@@ -40,7 +56,7 @@ def serve_static_files(path):
 # Inicializando a aplicação
 if __name__ == '__main__':
     with app.app_context():
-        db.create_all()  # Cria as tabelas, se necessário
-
+        db.create_all() 
+        
     app = create_app()
     app.run(debug=True)

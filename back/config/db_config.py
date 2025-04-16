@@ -1,12 +1,11 @@
-import psycopg2
-from psycopg2.extras import RealDictCursor
+import psycopg
 
 def get_db_connection():
-    conn = psycopg2.connect(
-        host="localhost",
-        database="postegres",
-        user="postegres",
-        password="root"
+    northwind = psycopg.connect(
+        host='localhost',
+        dbname='postgres', 
+        user = 'postgres', 
+        password = 'root'
     )
-    conn.autocommit = True
-    return conn
+    northwind.autocommit = True
+    return northwind
