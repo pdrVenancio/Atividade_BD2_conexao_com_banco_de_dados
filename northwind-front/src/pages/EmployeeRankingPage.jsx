@@ -10,25 +10,52 @@ export default function EmployeeRankingPage() {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const handleFetch = async () => {
-    try {
-      setLoading(true);
-      setError('');
-      const res = useDrive
-        ? await getEmployeeRankingDrive(startDate, endDate)
-        : await getEmployeeRanking(startDate, endDate);
-      setData(res.data);
-    } catch (err) {
-      console.error(err);
-      setError('Falha ao buscar ranking');
-    } finally {
-      setLoading(false);
-    }
+  const handleFetch = () => {
+    setLoading(true);
+    setError('');
+    setData([]);
+
+    const fetchFn = useDrive
+      ? getEmployeeRankingDrive(startDate, endDate)
+      : getEmployeeRanking(startDate, endDate);
+
+    fetchFn
+      .then(res => {
+        const payload = res.data;
+
+        // Se o backend retornou { message: "..." } em 404 ou lógica customizada
+        if (payload.message) {
+          setError(payload.message);
+          return;
+        }
+
+        // Se veio array vazio sem message
+        if (Array.isArray(payload) && payload.length === 0) {
+          setError('Nenhum funcionário encontrado para o intervalo de tempo fornecido.');
+          return;
+        }
+
+        // Caso normal: lista de dados
+        setData(payload);
+      })
+      .catch(err => {
+        // Extrai a mensagem de erro enviada pelo backend, se existir
+        const errMsg =
+          err.response?.data?.error ||
+          err.response?.data?.message ||
+          err.message ||
+          'Falha ao buscar ranking';
+        setError(errMsg);
+      })
+      .finally(() => {
+        setLoading(false);
+      });
   };
 
   return (
     <section className="ranking-page">
       <h2>Ranking de Funcionários</h2>
+
       <div className="backend-toggle">
         <label>
           <input
@@ -51,15 +78,25 @@ export default function EmployeeRankingPage() {
       </div>
 
       <div className="date-range">
-        <input type="date" value={startDate} onChange={e => setStartDate(e.target.value)} />
+        <input
+          type="date"
+          value={startDate}
+          onChange={e => setStartDate(e.target.value)}
+        />
         <span>até</span>
-        <input type="date" value={endDate} onChange={e => setEndDate(e.target.value)} />
+        <input
+          type="date"
+          value={endDate}
+          onChange={e => setEndDate(e.target.value)}
+        />
         <button onClick={handleFetch}>Buscar</button>
       </div>
 
       {loading && <Loading text="Buscando..." />}
+
       {error && <p className="error">{error}</p>}
-      {!!data.length && (
+
+      {!loading && !error && data.length > 0 && (
         <table className="ranking-table">
           <thead>
             <tr>
@@ -79,7 +116,12 @@ export default function EmployeeRankingPage() {
                 </td>
                 <td>{r.soma_qtd_produtos}</td>
                 <td>{r.pedidos_qtd}</td>
-                <td>{r.valor_total.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' })}</td>
+                <td>
+                  {Number(r.valor_total).toLocaleString('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL'
+                  })}
+                </td>
               </tr>
             ))}
           </tbody>

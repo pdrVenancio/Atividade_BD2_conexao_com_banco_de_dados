@@ -107,10 +107,16 @@ export default function NewOrderPage() {
       setOrder(o => ({ ...o, shipname: '', shipaddress: '', shipcity: '', shipregion: '', shippostalcode: '', shipcountry: '', freight: 0 }));
       setItems([]);
     } catch (err) {
-      console.error(err);
-      setErrorMsg('Erro ao criar pedido. Consulte o console para detalhes.');
-    }
-  };
+    console.error(err);
+    // tenta extrair exatamente o que o back mandou
+    const msg =
+      err.response?.data?.message ||
+      err.response?.data?.error ||
+      err.message ||
+      'Erro desconhecido';
+    setErrorMsg(msg);
+  }
+};
 
   if (loading) return <Loading />;
 

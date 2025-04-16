@@ -9,15 +9,39 @@ class OrderDAO:
             cur.execute("SELECT MAX(orderid) FROM northwind.orders")
             last_id_order = cur.fetchone()[0]
             new_order_id = int(last_id_order) + 1
-            cur.execute(f"""
-                    INSERT INTO northwind.orders (
-                        orderid, customerid, employeeid, orderdate, requireddate, shippeddate,
-                        freight, shipname, shipaddress, shipcity, shipregion,
-                        shippostalcode, shipcountry
-                    ) VALUES ({new_order_id}, {order.customerid}, {order.employeeid}, {order.orderdate}, {order.requireddate}, 
-                    {order.shippeddate}, {order.freight}, {order.shipname}, {order.shipaddress}, {order.shipcity}, 
-                    {order.shipregion}, {order.shippostalcode}, {order.shipcountry})
-                """)
+            cur.execute("""
+            INSERT INTO northwind.orders (
+                orderid,
+                customerid,
+                employeeid,
+                orderdate,
+                requireddate,
+                shippeddate,
+                freight,
+                shipname,
+                shipaddress,
+                shipcity,
+                shipregion,
+                shippostalcode,
+                shipcountry
+            ) VALUES (
+                %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s
+            )
+        """, (
+            new_order_id,
+            order.customerid,
+            order.employeeid,
+            order.orderdate,
+            order.requireddate,
+            order.shippeddate,
+            order.freight,
+            order.shipname,
+            order.shipaddress,
+            order.shipcity,
+            order.shipregion,
+            order.shippostalcode,
+            order.shipcountry
+        ))
 
             return  new_order_id
 
