@@ -16,12 +16,9 @@ class EmployeeDAO:
         
     
     def get_employee_ranking(self, start_date, end_date):
-        """
-        Retorna o ranking de funcionários com base no intervalo de tempo dado.
-        """
         rankings = []
         with self.conn.cursor() as cur:
-            cur.execute("""
+            cur.execute(f"""
                 SELECT 
                     emp.employeeid,
                     emp.firstname,
@@ -32,10 +29,10 @@ class EmployeeDAO:
                 FROM northwind.orders ord
                 LEFT JOIN northwind.order_details ode ON ord.orderid = ode.orderid
                 LEFT JOIN northwind.employees emp ON ord.employeeid = emp.employeeid
-                WHERE ord.orderdate BETWEEN %s AND %s
+                WHERE ord.orderdate BETWEEN {start_date} AND {end_date}
                 GROUP BY emp.employeeid, emp.firstname, emp.lastname
                 ORDER BY valor_total DESC;
-            """, (start_date, end_date))
+            """)
 
             rows = cur.fetchall()
             for row in rows:

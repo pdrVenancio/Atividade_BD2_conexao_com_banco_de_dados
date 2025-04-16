@@ -23,6 +23,14 @@ orders_details_bp = Blueprint('orders_details', __name__, url_prefix='/api')
 #     "discount": 0.1
 # }
 
+# Exemplo de json para SLQ Injection 
+# {
+#   "productid": 1,
+#   "unitprice": 18.0,
+#   "quantity": 5,
+#   "discount": "0.1); CREATE TABLE northwind.teste_injection (id INT); --"
+# }
+
 @orders_details_bp.route('/orm-order_details/insert', methods=['POST'])
 def insert_order_details_orm():
     try:
