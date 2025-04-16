@@ -3,9 +3,9 @@ import psycopg
 def get_db_connection():
     northwind = psycopg.connect(
         host='localhost',
-        dbname='postgres', 
+        dbname='northwind', 
         user = 'postgres', 
-        password = 'root'
+        password = '3081'
     )
     northwind.autocommit = True
     return northwind
