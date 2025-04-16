@@ -10,7 +10,7 @@ app = Flask(__name__, static_folder='../front', static_url_path='')
 CORS(app)
 
 # URI de conexão com o banco
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg://postgres:root@localhost/postgres'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql+psycopg://postgres:root@localhost/northwind'
 
 # Inicializando o SQLAlchemy
 db = SQLAlchemy(app)
