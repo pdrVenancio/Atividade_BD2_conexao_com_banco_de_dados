@@ -73,11 +73,14 @@ def get_order_detail_orm(order_id):
 def insert_order_details_drive():
     try:
         data = request.get_json()
+        print('1', data)
         order_detail_dao = OrderDetailDAO_DRIVE(session_DRIVE)
 
         orders_details = OrderDetails(**data)
 
+        print('2', orders_details)
         response =  order_detail_dao.insert(orders_details )
+        print('3', response)
         return jsonify({"order_details": response}), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500

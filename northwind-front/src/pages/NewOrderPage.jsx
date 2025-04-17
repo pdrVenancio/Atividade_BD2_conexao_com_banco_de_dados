@@ -68,7 +68,7 @@ export default function NewOrderPage() {
   };
 
   const handleAddItem = () => {
-    setItems([...items, { productid: '', quantity: 1, discount: 0 }]);
+    setItems([...items, { productid: '', unitprice: 1, quantity: 1, discount: 0 }]);
   };
 
   const handleRemoveItem = idx => {
@@ -104,7 +104,16 @@ export default function NewOrderPage() {
 
       setSuccessMsg(`Pedido #${newOrderId} criado com sucesso!`);
       // resetar formulário
-      setOrder(o => ({ ...o, shipname: '', shipaddress: '', shipcity: '', shipregion: '', shippostalcode: '', shipcountry: '', freight: 0 }));
+      setOrder(o => ({
+        ...o,
+        shipname: "Alfreds Futterkiste",
+        shipaddress: "Obere Str. 57",
+        shipcity: "Berlin",
+        shipregion: "Lara",
+        shippostalcode: "3508",
+        shipcountry: "Germany",
+        freight: 1.1
+      }));
       setItems([]);
     } catch (err) {
     console.error(err);

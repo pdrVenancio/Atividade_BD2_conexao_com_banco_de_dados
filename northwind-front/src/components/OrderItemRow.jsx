@@ -1,3 +1,5 @@
+// src/components/OrderItemRow.jsx
+
 import { useEffect, useState } from 'react';
 import { getAllProducts, getAllProductsDrive } from '../services/api';
 
@@ -11,22 +13,25 @@ export default function OrderItemRow({
   const [products, setProducts] = useState([]);
 
   useEffect(() => {
-    (async () => {
-      const res = useDrive ? await getAllProductsDrive() : await getAllProducts();
-      setProducts(res.data);
-    })();
+    const fetchProducts = useDrive ? getAllProductsDrive : getAllProducts;
+    fetchProducts().then(res => setProducts(res.data));
   }, [useDrive]);
 
   return (
     <tr>
       <td>
         <select
-          value={item.productid || ''}
-          onChange={e => onChange(index, { ...item, productid: Number(e.target.value) })}
+          value={item.productid}
+          onChange={e =>
+            onChange(index, {
+              ...item,
+              productid: Number(e.target.value),
+            })
+          }
           required
         >
           <option value="" disabled>
-            Produto
+            Selecione o produto
           </option>
           {products.map(p => (
             <option key={p.productid} value={p.productid}>
@@ -35,22 +40,30 @@ export default function OrderItemRow({
           ))}
         </select>
       </td>
+
       <td>
         <input
-          value={item.quantity || ''}
-          onChange={e => onChange(index, { ...item, quantity: Number(e.target.value) })}
+          type="text"
+          value={item.quantity}
+          placeholder="Qtd."
+          onChange={e =>
+            onChange(index, { ...item, quantity: e.target.value })
+          }
           required
         />
       </td>
+
       <td>
         <input
-          type="number"
-          min="0"
-          max="100"
-          value={item.discount || 0}
-          onChange={e => onChange(index, { ...item, discount: Number(e.target.value) })}
+          type="text"
+          value={item.discount}
+          placeholder="Ex: 0.1"
+          onChange={e =>
+            onChange(index, { ...item, discount: e.target.value })
+          }
         />
       </td>
+
       <td>
         <button type="button" onClick={() => onRemove(index)}>
           Remover
