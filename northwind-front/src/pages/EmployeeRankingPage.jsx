@@ -82,20 +82,18 @@ export default function EmployeeRankingPage() {
           <table className="ranking-table">
             <thead>
               <tr>
-                <th>#</th>
                 <th>Funcionário</th>
                 <th>Qtd. Produtos</th>
-                <th>Qtd. Pedidos</th>
+                {/* <th>Qtd. Pedidos</th>  */}
                 <th>Valor Total</th>
               </tr>
             </thead>
             <tbody>
               {data.map(r => (
                 <tr key={r.position}>
-                  <td>{r.position}</td>
                   <td>{r.firstname} {r.lastname}</td>
                   <td>{r.soma_qtd_produtos}</td>
-                  <td>{r.pedidos_qtd}</td>
+                  {/* <td>{r.pedidos_qtd}</td> */}
                   <td>{Number(r.valor_total).toLocaleString('pt-BR', {
                         style:'currency', currency:'BRL'})}</td>
                 </tr>

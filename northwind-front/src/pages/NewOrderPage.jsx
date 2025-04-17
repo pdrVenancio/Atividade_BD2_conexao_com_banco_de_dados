@@ -290,7 +290,7 @@ export default function NewOrderPage() {
               <tr>
                 <th>Produto</th>
                 <th>Qtd.</th>
-                <th>Desconto</th>
+                <th>Desconto (%)</th>
                 <th></th>
               </tr>
             </thead>

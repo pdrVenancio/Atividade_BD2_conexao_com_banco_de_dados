@@ -37,8 +37,6 @@ export default function OrderItemRow({
       </td>
       <td>
         <input
-          type="number"
-          min="1"
           value={item.quantity || ''}
           onChange={e => onChange(index, { ...item, quantity: Number(e.target.value) })}
           required
@@ -47,9 +45,8 @@ export default function OrderItemRow({
       <td>
         <input
           type="number"
-          step="0.01"
           min="0"
-          max="1"
+          max="100"
           value={item.discount || 0}
           onChange={e => onChange(index, { ...item, discount: Number(e.target.value) })}
         />
