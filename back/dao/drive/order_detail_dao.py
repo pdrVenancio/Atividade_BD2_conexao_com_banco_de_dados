@@ -23,6 +23,13 @@ class OrderDetailDAO:
             ))
             return new_order_id
 
+            # cur.execute(f"""
+            #         INSERT INTO northwind.order_details (
+            #             orderid, productid, unitprice, quantity, discount
+            #         ) VALUES ('{new_order_id}, '{detail.productid}, '{detail.unitprice}, '{detail.quantity}, '{detail.discount})
+            #     """)
+            # return new_order_id
+
         
     def get_by_order_id(self, orderid):
         details = []

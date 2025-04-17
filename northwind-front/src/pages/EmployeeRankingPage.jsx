@@ -56,76 +56,53 @@ export default function EmployeeRankingPage() {
     <section className="ranking-page">
       <h2>Ranking de Funcionários</h2>
 
-      <div className="backend-toggle">
+      <div className="radio-group">
         <label>
-          <input
-            type="radio"
-            name="backend"
-            checked={!useDrive}
-            onChange={() => setUseDrive(false)}
-          />
-          Seguro (ORM)
+          <input type="radio" checked={!useDrive} onChange={() => setUseDrive(false)} />
+          Seguro&nbsp;(ORM)
         </label>
         <label>
-          <input
-            type="radio"
-            name="backend"
-            checked={useDrive}
-            onChange={() => setUseDrive(true)}
-          />
-          Inseguro (Drive)
+          <input type="radio" checked={useDrive}  onChange={() => setUseDrive(true)}  />
+          Inseguro&nbsp;(Drive)
         </label>
       </div>
 
       <div className="date-range">
-        <input
-          type="date"
-          value={startDate}
-          onChange={e => setStartDate(e.target.value)}
-        />
+        <input type="date" value={startDate} onChange={e => setStartDate(e.target.value)} />
         <span>até</span>
-        <input
-          type="date"
-          value={endDate}
-          onChange={e => setEndDate(e.target.value)}
-        />
+        <input type="date" value={endDate}   onChange={e => setEndDate(e.target.value)} />
         <button onClick={handleFetch}>Buscar</button>
       </div>
 
-      {loading && <Loading text="Buscando..." />}
+      {loading && <Loading text="Buscando…" />}
+      {error   && <p className="error">{error}</p>}
 
-      {error && <p className="error">{error}</p>}
-
-      {!loading && !error && data.length > 0 && (
-        <table className="ranking-table">
-          <thead>
-            <tr>
-              <th>#</th>
-              <th>Funcionário</th>
-              <th>Qtd. Produtos</th>
-              <th>Qtd. Pedidos</th>
-              <th>Valor Total</th>
-            </tr>
-          </thead>
-          <tbody>
-            {data.map(r => (
-              <tr key={r.position}>
-                <td>{r.position}</td>
-                <td>
-                  {r.firstname} {r.lastname}
-                </td>
-                <td>{r.soma_qtd_produtos}</td>
-                <td>{r.pedidos_qtd}</td>
-                <td>
-                  {Number(r.valor_total).toLocaleString('pt-BR', {
-                    style: 'currency',
-                    currency: 'BRL'
-                  })}
-                </td>
+      {(!loading && !error && data.length > 0) && (
+        <div className="employee-ranking">
+          <table className="ranking-table">
+            <thead>
+              <tr>
+                <th>#</th>
+                <th>Funcionário</th>
+                <th>Qtd. Produtos</th>
+                <th>Qtd. Pedidos</th>
+                <th>Valor Total</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {data.map(r => (
+                <tr key={r.position}>
+                  <td>{r.position}</td>
+                  <td>{r.firstname} {r.lastname}</td>
+                  <td>{r.soma_qtd_produtos}</td>
+                  <td>{r.pedidos_qtd}</td>
+                  <td>{Number(r.valor_total).toLocaleString('pt-BR', {
+                        style:'currency', currency:'BRL'})}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
     </section>
   );

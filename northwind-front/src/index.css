@@ -10,16 +10,12 @@ html, body, #root {
 }
 
 body {
-  background: #E9F5EE;   /* pastel esverdeado bem suave */
+  background: #E9F5EE;
   color: #1D3557;
   line-height: 1.5;
-  display: flex;
-  justify-content: center;
-  align-items: center;
 }
 
-/* para inputs e selects de forma global, caso use fora de .order-form */
-input, select {
+input, select, button {
   font-family: inherit;
   font-size: 1rem;
 }

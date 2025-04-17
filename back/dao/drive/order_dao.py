@@ -42,6 +42,22 @@ class OrderDAO:
             order.shippostalcode,
             order.shipcountry
         ))
+        # def insert(self, order: Orders):
+        # with self.conn.cursor() as cur:
+        #     cur.execute("SELECT MAX(orderid) FROM northwind.orders")
+        #     last_id_order = cur.fetchone()[0]
+        #     new_order_id = int(last_id_order) + 1
+        #     cur.execute(f"""
+        #             INSERT INTO northwind.orders (
+        #                 orderid, customerid, employeeid, orderdate, requireddate, shippeddate,
+        #                 freight, shipname, shipaddress, shipcity, shipregion,
+        #                 shippostalcode, shipcountry
+        #             ) VALUES ({new_order_id}, {order.customerid}, {order.employeeid}, {order.orderdate}, {order.requireddate}, 
+        #             {order.shippeddate}, {order.freight}, {order.shipname}, {order.shipaddress}, {order.shipcity}, 
+        #             {order.shipregion}, {order.shippostalcode}, {order.shipcountry})
+        #         """)
+
+        #     return  new_order_id
 
             return  new_order_id
 

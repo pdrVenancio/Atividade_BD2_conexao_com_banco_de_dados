@@ -125,7 +125,7 @@ export default function NewOrderPage() {
       <h2>Novo Pedido</h2>
 
       {/* seletor ORM / Drive */}
-      <div className="backend-toggle">
+      <div className="radio-group">
         <label>
           <input
             type="radio"
@@ -307,10 +307,10 @@ export default function NewOrderPage() {
               ))}
             </tbody>
           </table>
-          <button type="button" onClick={handleAddItem}>
-            Adicionar Item
-          </button>
         </fieldset>
+        <button type="button" className="add-item-btn" onClick={handleAddItem}>
+          Adicionar Item
+        </button>
 
         <button type="submit" className="submit-btn">
           Salvar Pedido

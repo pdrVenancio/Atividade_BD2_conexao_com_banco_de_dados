@@ -1,7 +1,7 @@
 import { Routes, Route, NavLink } from 'react-router-dom';
 import NewOrderPage from './pages/NewOrderPage';
 import EmployeeRankingPage from './pages/EmployeeRankingPage';
-import './app.css';
+import './App.css';
 
 export default function App() {
   return (
