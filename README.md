@@ -57,7 +57,7 @@ Atividade_BD2_conexao_com_banco_de_dados/
 │   └── src/
 │       ├── components
 │       │    ├── Loading.jsx
-│       │    ├── OrderItemRow.jsx
+│       │    └── OrderItemRow.jsx
 │       │
 │       ├── pages
 │       │    ├── EmployeeRankingPage.jsx
@@ -125,6 +125,6 @@ As dependências do Back-end projeto estão listadas no arquivo `requirements.tx
 
 ## 📄 Desenvolvido por
 
-Pedro Venâncio dos Santos - 2023010066 [gitHub](https://github.com/pdrVenancio).
-Breno Vieira Nogueira CArneiro - 2023003929 [gitHub](https://github.com/Brenovnc)
+Pedro Venâncio dos Santos - 2023010066 [gitHub](https://github.com/pdrVenancio)/
+Breno Vieira Nogueira Carneiro - 2023003929 [gitHub](https://github.com/Brenovnc)
 
