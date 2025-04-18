@@ -8,7 +8,7 @@ import decimal
 class Base(DeclarativeBase):
     pass
 
-
+# GERADO PELO SQL A CO DE GEN
 class Categories(Base):
     __tablename__ = 'categories'
     __table_args__ = (

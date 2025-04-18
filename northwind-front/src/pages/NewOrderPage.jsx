@@ -84,15 +84,15 @@ export default function NewOrderPage() {
     setSuccessMsg('');
 
     try {
-      // 1) Cria o pedido
+      // 1 Cria o pedido
       const createOrderFn = useDrive ? createOrderDrive : createOrder;
       const res = await createOrderFn(order);
 
-      // O backend devolve {product: orderid} ou similar.
+      // O backend devolve {product: orderid}
       const newOrderId = res.data.product?.orderid || res.data.product || res.data.orderid;
       if (!newOrderId) throw new Error('ID do pedido não retornado pelo backend');
 
-      // 2) Cria cada item (loop de detalhes)
+      // 2 Cria cada item (loop de detalhes)
       const createItemFn = useDrive ? createOrderDetailsDrive : createOrderDetails;
       await Promise.all(
         items.map(it => 

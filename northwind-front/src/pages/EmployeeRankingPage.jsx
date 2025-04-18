@@ -22,8 +22,6 @@ export default function EmployeeRankingPage() {
     fetchFn
       .then(res => {
         const payload = res.data;
-
-        // Se o backend retornou { message: "..." } em 404 ou lógica customizada
         if (payload.message) {
           setError(payload.message);
           return;
@@ -84,7 +82,6 @@ export default function EmployeeRankingPage() {
               <tr>
                 <th>Funcionário</th>
                 <th>Qtd. Produtos</th>
-                {/* <th>Qtd. Pedidos</th>  */}
                 <th>Valor Total</th>
               </tr>
             </thead>
@@ -93,7 +90,6 @@ export default function EmployeeRankingPage() {
                 <tr key={r.position}>
                   <td>{r.firstname} {r.lastname}</td>
                   <td>{r.soma_qtd_produtos}</td>
-                  {/* <td>{r.pedidos_qtd}</td> */}
                   <td>{Number(r.valor_total).toLocaleString('pt-BR', {
                         style:'currency', currency:'BRL'})}</td>
                 </tr>

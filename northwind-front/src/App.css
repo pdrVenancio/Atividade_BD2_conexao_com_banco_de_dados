@@ -1,11 +1,15 @@
-/* ---------- RESET BÁSICO ---------- */
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
 }
-html, body, #root { height: 100%; }
+
+html,
+body,
+#root {
+  height: 100%;
+}
 
 body {
   background: #E9F5EE;
@@ -13,7 +17,6 @@ body {
   line-height: 1.5;
 }
 
-/* ---------- NAVBAR ---------- */
 .navbar {
   display: flex;
   justify-content: space-between;
@@ -21,28 +24,34 @@ body {
   padding: 1rem 2rem;
   background: #A8DADC;
   color: #1D3557;
-  box-shadow: 0 2px 4px rgba(0,0,0,.1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, .1);
 }
+
 .navbar a {
   margin-left: 1rem;
   color: #457B9D;
   text-decoration: none;
   transition: color .3s;
 }
-.navbar a:hover        { color: #1D3557; }
-.navbar a.active       { font-weight: 700; border-bottom: 2px solid #1D3557; }
 
-/* ---------- CONTEÚDO PRINCIPAL ---------- */
+.navbar a:hover {
+  color: #1D3557;
+}
+
+.navbar a.active {
+  font-weight: 700;
+  border-bottom: 2px solid #1D3557;
+}
+
 .main {
   padding: 2rem;
   max-width: 1000px;
   margin: 2rem auto;
   background: #F1FAEE;
   border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0,0,0,.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, .05);
 }
 
-/* ---------- TOGGLE BACKEND ---------- */
 .radio-group {
   display: flex;
   gap: 1.5rem;
@@ -50,11 +59,11 @@ body {
   margin-bottom: 1.5rem;
 }
 
-/* ---------- FORMULÁRIOS ---------- */
 .order-form fieldset,
 .ranking-page .date-range {
   margin-bottom: 1.5rem;
 }
+
 .order-form fieldset {
   padding: 1.5rem;
   border: 1px solid #A8DADC;
@@ -68,30 +77,48 @@ body {
   gap: 1rem 2rem;
 }
 
-.order-form legend       { font-weight: 600; margin-bottom: .5rem; }
-.order-form label        { display: flex; flex-direction: column; color: #457B9D; }
+.order-form legend {
+  font-weight: 600;
+  margin-bottom: .5rem;
+}
+
+.order-form label {
+  display: flex;
+  flex-direction: column;
+  color: #457B9D;
+}
+
 .order-form input,
-.order-form select       {
+.order-form select {
   padding: .6rem;
   border: 1px solid #A8DADC;
   border-radius: 6px;
   background: #F8F9FA;
   transition: border-color .2s;
 }
-.order-form input:focus,
-.order-form select:focus { border-color: #457B9D; outline: none; }
 
-/* ---------- TABELA DE ITENS ---------- */
-.items-table             { width: 100%; border-collapse: collapse; }
+.order-form input:focus,
+.order-form select:focus {
+  border-color: #457B9D;
+  outline: none;
+}
+
+.items-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
 .items-table th,
-.items-table td          {
+.items-table td {
   border: 1px solid #E5E5E5;
   padding: .6rem;
   text-align: left;
 }
-.items-fieldset          { padding: 1.5rem; }
 
-/* Botão “Adicionar Item” -- agora pequeno e abaixo da tabela */
+.items-fieldset {
+  padding: 1.5rem;
+}
+
 .add-item-btn {
   margin-top: 1rem;
   padding: .55rem 1.25rem;
@@ -103,9 +130,11 @@ body {
   cursor: pointer;
   transition: filter .2s;
 }
-.add-item-btn:hover      { filter: brightness(1.1); }
 
-/* ---------- BOTÃO SUBMIT / OUTROS ---------- */
+.add-item-btn:hover {
+  filter: brightness(1.1);
+}
+
 .submit-btn,
 .date-range button {
   padding: .55rem 1.25rem;
@@ -117,10 +146,12 @@ body {
   cursor: pointer;
   transition: filter .2s;
 }
-.submit-btn:hover,
-.date-range button:hover { filter: brightness(1.1); }
 
-/* ---------- DATE‑RANGE ---------- */
+.submit-btn:hover,
+.date-range button:hover {
+  filter: brightness(1.1);
+}
+
 .date-range {
   display: flex;
   flex-wrap: wrap;
@@ -128,24 +159,43 @@ body {
   align-items: center;
 }
 
-/* ---------- TABELA RANKING ---------- */
-.ranking-table           { width: 100%; border-collapse: collapse; margin-top: 1rem; }
+.ranking-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 1rem;
+}
+
 .ranking-table th,
-.ranking-table td        {
+.ranking-table td {
   border-bottom: 1px solid #E5E5E5;
   padding: .6rem .8rem;
   text-align: left;
 }
-.ranking-table th        { background: #EAF6F2; }
 
-/* ---------- MENSAGENS ---------- */
-.success                 { color: #2A9D8F; margin-top: 1rem; }
-.error                   { color: #E63946; margin-top: 1rem; }
-.loading                 { text-align: center; font-size: 1.1rem; color: #457B9D; }
+.ranking-table th {
+  background: #EAF6F2;
+}
+
+.success {
+  color: #2A9D8F;
+  margin-top: 1rem;
+}
+
+.error {
+  color: #E63946;
+  margin-top: 1rem;
+}
+
+.loading {
+  text-align: center;
+  font-size: 1.1rem;
+  color: #457B9D;
+}
 
 .add-item-btn {
   margin-right: 10px;
 }
+
 .add-item-btn:hover {
   filter: brightness(1.1);
 }
