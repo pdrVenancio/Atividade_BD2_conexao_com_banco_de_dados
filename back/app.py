@@ -41,18 +41,6 @@ def create_app():
     
     return  app
 
-
-
-# Rota principal: carrega o index.html da pasta do front
-@app.route('/')
-def serve_index():
-    return send_from_directory(app.static_folder, 'index.html')
-
-# Rota para servir arquivos estáticos como style.css, script.js etc.
-@app.route('/<path:path>')
-def serve_static_files(path):
-    return send_from_directory(app.static_folder, path)
-
 # Inicializando a aplicação
 if __name__ == '__main__':
     with app.app_context():

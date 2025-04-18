@@ -24,7 +24,9 @@ class OrderDetailDAO:
         with self.conn.cursor() as cur:
             cur.execute(f"""
                     SELECT *
-                    FROM northwind.order_details
+                    FROM northwind.order_details od
+                    LEFT JOIN northwind.products p
+                    ON od.productid = p.productid
                     WHERE orderid = {orderid}
                 """)
             metadata_colunas_orders = [desc[0] for desc in cur.description]

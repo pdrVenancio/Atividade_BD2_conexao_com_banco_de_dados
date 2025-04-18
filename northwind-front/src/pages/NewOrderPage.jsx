@@ -68,6 +68,7 @@ export default function NewOrderPage() {
   };
 
   const handleAddItem = () => {
+    console.log(...items)
     setItems([...items, { productid: '', unitprice: 1, quantity: 1, discount: 0 }]);
   };
 
@@ -94,11 +95,11 @@ export default function NewOrderPage() {
       // 2) Cria cada item (loop de detalhes)
       const createItemFn = useDrive ? createOrderDetailsDrive : createOrderDetails;
       await Promise.all(
-        items.map(it =>
+        items.map(it => 
           createItemFn({
             ...it,
             orderid: newOrderId,
-          }),
+          }), 
         ),
       );
 

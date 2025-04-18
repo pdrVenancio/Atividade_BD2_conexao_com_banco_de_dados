@@ -56,21 +56,15 @@ def get_order_orm(order_id):
 
         order, customer, employee = response
         order_dict = {
-            "order": {
                 "orderid": order.orderid,
                 "customerid": order.customerid,
-                "date": str(order.orderdate)  # converter datetime para string
-            },
-            "customer": {
+                "orderdate": str(order.orderdate),
                 "customerid": customer.customerid,
-                "companyname": customer.companyname
-            },
-            "employee": {
+                "companyname": customer.companyname,
                 "employeeid": employee.employeeid,
                 "firstname": employee.firstname,
                 "lastname": employee.lastname
             }
-        }
 
         if not order_dict:
             return jsonify({"error": "Pedido não encontrado"}), 404
@@ -97,9 +91,9 @@ def get_order_drive(order_id):
         order_dao = OrderDAO_DRIVE(session_DRIVE)
         
         response = order_dao.get_by_id(order_id)
-
+        print(response)
         if not response:
             return jsonify({"error": "Pedido não encontrado"}), 404
-        return jsonify(response), 200
+        return jsonify(response[0]), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500

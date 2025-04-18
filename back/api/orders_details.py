@@ -36,7 +36,8 @@ def insert_order_details_orm():
     try:
         data = request.get_json()
         order_detail_dao = OrderDetailDAO_ORM(session_ORM)
-
+        print('1')
+        print(data)
         orders_details = OrderDetails(**data)
 
         response =  order_detail_dao.insert(orders_details)
@@ -57,8 +58,8 @@ def get_order_detail_orm(order_id):
                 "orderid": order_detail.orderid,
                 "productid": order_detail.productid,
                 "quantity": order_detail.quantity,
-                "product_name": product.productname,
-                "product_price": product.unitprice
+                "productname": product.productname,
+                "unitprice": product.unitprice
             }
             produtos.append(order_detail_dict)
         
@@ -73,14 +74,11 @@ def get_order_detail_orm(order_id):
 def insert_order_details_drive():
     try:
         data = request.get_json()
-        print('1', data)
         order_detail_dao = OrderDetailDAO_DRIVE(session_DRIVE)
 
         orders_details = OrderDetails(**data)
 
-        print('2', orders_details)
         response =  order_detail_dao.insert(orders_details )
-        print('3', response)
         return jsonify({"order_details": response}), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
@@ -91,7 +89,6 @@ def get_order_detail_drive(order_id):
         order_details_dao = OrderDetailDAO_DRIVE(session_DRIVE)
         
         response = order_details_dao.get_by_order_id(order_id)
-
         if not response:
             return jsonify({"error": "Pedido não encontrado"}), 404
         return jsonify(response), 200
