@@ -125,6 +125,7 @@ As dependências do Back-end projeto estão listadas no arquivo `requirements.tx
 
 ## 📄 Desenvolvido por
 
-Pedro Venâncio dos Santos - 2023010066 [gitHub](https://github.com/pdrVenancio) \n
+Pedro Venâncio dos Santos - 2023010066 [gitHub](https://github.com/pdrVenancio)
+
 Breno Vieira Nogueira Carneiro - 2023003929 [gitHub](https://github.com/Brenovnc)
 
